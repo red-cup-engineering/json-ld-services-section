@@ -1,0 +1,192 @@
+{
+  "name": "@red-cup-engineering/json-ld-services-section",
+  "version": "0.1.0",
+  "description": "Deterministic JSON-LD writing: RDF statements compacted against a supplied prefix context with stable node, key and value order, and the small writer (pruneEmpty, jsonLdText) for documents built by hand in a fixed key order.",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/red-cup-engineering/json-ld-services-section.git"
+  },
+  "type": "module",
+  "private": false,
+  "license": "MIT",
+  "exports": {
+    ".": "./scripts/index.mjs",
+    "./json-ld": "./src/json-ld.mjs",
+    "./compact-rdf-statements-as-json-ld": "./scripts/compact-rdf-statements-as-json-ld.mjs",
+    "./package.json": "./package.json"
+  },
+  "bin": {
+    "compact-rdf-statements-as-json-ld": "scripts/compact-rdf-statements-as-json-ld.mjs"
+  },
+  "files": [
+    "src",
+    "scripts",
+    "data",
+    "README.md",
+    "LICENSE",
+    "package.json"
+  ],
+  "dependencies": {
+    "@red-cup-engineering/javascript-node-services-section": "0.4.1"
+  },
+  "devDependencies": {
+    "@red-cup-engineering/json-schema-services-section": "0.5.1"
+  },
+  "scripts": {
+    "check": "for file in src/*.mjs scripts/*.mjs test/*.mjs; do node --check \"$file\" || exit; done",
+    "test": "node --test test/*.test.mjs",
+    "pack:dry-run": "npm pack --dry-run --ignore-scripts"
+  },
+  "keywords": [
+    "json-ld",
+    "rdf",
+    "compaction",
+    "deterministic",
+    "linked-data"
+  ],
+  "engines": {
+    "node": ">=24.2.0"
+  },
+  "funding": {
+    "type": "individual",
+    "url": "https://github.com/561-group/.github/blob/main/TIPS.md"
+  },
+  "x-market": {
+    "offers": [
+      {
+        "operation": "compact-rdf-statements-as-json-ld",
+        "subpath": "./compact-rdf-statements-as-json-ld",
+        "export": "compactRdfStatementsAsJsonLd",
+        "route": "/v1/compact-rdf-statements-as-json-ld",
+        "method": "POST",
+        "price": {
+          "amount": "$0.005"
+        },
+        "framings": [
+          {
+            "key": "default",
+            "title": "Compact RDF statements as JSON-LD",
+            "description": "Write RDF statements as a compacted, deterministic JSON-LD graph against your own prefix context: nodes sorted by id, properties by key, values deduplicated, so the same statements always give the same bytes and diffs show only real change.",
+            "tags": [
+              "rdf",
+              "json-ld",
+              "linked-data",
+              "deterministic",
+              "provenance"
+            ],
+            "serviceName": "compact-rdf-as-json-ld"
+          }
+        ],
+        "ledgerAccount": "Income:Sales:X402:Json-ld",
+        "markets": [
+          "x402-bazaar",
+          "402index",
+          "house-capability-market",
+          "house-seller-catalog"
+        ],
+        "saleStatus": "held",
+        "seller": {
+          "enterprise": "engineering"
+        },
+        "category": "data",
+        "runtime": "edge",
+        "examples": {
+          "input": {
+            "statements": [
+              {
+                "subject": "ni:///sha-256;bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbA",
+                "predicate": "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
+                "object": {
+                  "kind": "iri",
+                  "value": "http://www.w3.org/ns/prov#Entity"
+                }
+              },
+              {
+                "subject": "ni:///sha-256;bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbA",
+                "predicate": "http://www.w3.org/ns/prov#wasDerivedFrom",
+                "object": {
+                  "kind": "iri",
+                  "value": "ni:///sha-256;aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+                }
+              },
+              {
+                "subject": "ni:///sha-256;aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+                "predicate": "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
+                "object": {
+                  "kind": "iri",
+                  "value": "http://www.w3.org/ns/prov#Entity"
+                }
+              },
+              {
+                "subject": "ni:///sha-256;aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+                "predicate": "http://purl.org/dc/terms/extent",
+                "object": {
+                  "kind": "literal",
+                  "value": "12",
+                  "datatype": "http://www.w3.org/2001/XMLSchema#nonNegativeInteger"
+                }
+              },
+              {
+                "subject": "ni:///sha-256;aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+                "predicate": "http://www.w3.org/2000/01/rdf-schema#label",
+                "object": {
+                  "kind": "literal",
+                  "value": "a.md"
+                }
+              },
+              {
+                "subject": "ni:///sha-256;aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+                "predicate": "http://www.w3.org/2000/01/rdf-schema#label",
+                "object": {
+                  "kind": "literal",
+                  "value": "une page",
+                  "language": "fr"
+                }
+              }
+            ],
+            "prefixes": {
+              "dcterms": "http://purl.org/dc/terms/",
+              "prov": "http://www.w3.org/ns/prov#",
+              "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+              "xsd": "http://www.w3.org/2001/XMLSchema#"
+            }
+          },
+          "output": {
+            "jsonLd": {
+              "@context": {
+                "dcterms": "http://purl.org/dc/terms/",
+                "prov": "http://www.w3.org/ns/prov#",
+                "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+                "xsd": "http://www.w3.org/2001/XMLSchema#"
+              },
+              "@graph": [
+                {
+                  "@id": "ni:///sha-256;aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+                  "@type": "prov:Entity",
+                  "dcterms:extent": {
+                    "@value": "12",
+                    "@type": "xsd:nonNegativeInteger"
+                  },
+                  "rdfs:label": [
+                    "a.md",
+                    {
+                      "@value": "une page",
+                      "@language": "fr"
+                    }
+                  ]
+                },
+                {
+                  "@id": "ni:///sha-256;bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbA",
+                  "@type": "prov:Entity",
+                  "prov:wasDerivedFrom": {
+                    "@id": "ni:///sha-256;aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+                  }
+                }
+              ]
+            }
+          }
+        }
+      }
+    ]
+  }
+}
