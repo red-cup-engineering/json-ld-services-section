@@ -46,6 +46,30 @@ test("a mapping makes one typed node per record, with values, prefixes and templ
   }]);
 });
 
+test("a * segment makes one node per object entry and names its keys", () => {
+  const plan = { platforms: { a: { x: { wave: 1 }, y: { wave: 2 } }, b: { x: { wave: 3 } } } };
+  const statements = mapRecord(plan, "f", {
+    prefixes,
+    type: "schema:Action",
+    id: "urn:p:{$key0}-{$key1}",
+    each: "platforms.*.*",
+    properties: { "schema:position": "wave", "schema:name": "$key" },
+  });
+  const subjects = [...new Set(statements.map((s) => s.subject))];
+  assert.deepEqual(subjects, ["urn:p:a-x", "urn:p:a-y", "urn:p:b-x"]);
+  assert.equal(statements.find((s) => s.subject === "urn:p:b-x" && s.predicate.endsWith("name")).object.value, "x");
+});
+
+test("json writes an ordered list or object as one rdf:JSON literal", () => {
+  const [, statement] = mapRecord({ id: "a", order: ["b", "a"] }, "f", {
+    prefixes, type: "schema:Thing", id: "urn:j:{id}",
+    properties: { "schema:value": { path: "order", json: true } },
+  });
+  assert.deepEqual(statement.object, {
+    kind: "literal", value: '["b","a"]', datatype: "http://www.w3.org/1999/02/22-rdf-syntax-ns#JSON",
+  });
+});
+
 test("require skips a row whose required predicate gets no value", () => {
   const mapping = {
     prefixes,
