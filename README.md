@@ -54,3 +54,13 @@ Expansion, framing and RDF dataset canonicalization are not done here: this writ
 it does not interpret one. Canonical N-Quads is `computer-triplet-serialized-content-engineering-services-section/rdf-canonicalization`.
 
 MIT licensed.
+
+## Mapping house JSON records to a standard vocabulary
+
+`map-records-as-json-ld.mjs <mappings.json> <file>...` reads JSON or JSONL records and
+prints one JSON-LD graph. A mapping names the node `type`, an `id` template, an optional
+`each` array and `where` filter, and `properties` from predicate to source path, so a record
+of any house shape becomes schema.org, OSLC, Dublin Core or any other vocabulary's nodes
+without new code. `src/map-records.mjs` documents the mapping fields, and
+`test/map-records.test.mjs` is its witness. The internal services section's
+`lib/record-mappings/` holds the mappings that wrote its `data/records/*.jsonld`.

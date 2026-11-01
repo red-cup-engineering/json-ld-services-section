@@ -13,10 +13,12 @@
     ".": "./scripts/index.mjs",
     "./json-ld": "./src/json-ld.mjs",
     "./compact-rdf-statements-as-json-ld": "./scripts/compact-rdf-statements-as-json-ld.mjs",
-    "./package.json": "./package.json"
+    "./package.json": "./package.json",
+    "./map-records": "./src/map-records.mjs"
   },
   "bin": {
-    "compact-rdf-statements-as-json-ld": "scripts/compact-rdf-statements-as-json-ld.mjs"
+    "compact-rdf-statements-as-json-ld": "scripts/compact-rdf-statements-as-json-ld.mjs",
+    "map-records-as-json-ld": "scripts/map-records-as-json-ld.mjs"
   },
   "files": [
     "src",
