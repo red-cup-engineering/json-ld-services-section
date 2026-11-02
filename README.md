@@ -1,5 +1,7 @@
 # @red-cup-engineering/json-ld-services-section
 
+Deterministic JSON-LD writing: RDF statements compacted against a supplied prefix context with stable node, key and value order, and the small writer (pruneEmpty, jsonLdText) for documents built by hand in a fixed key order.
+
 Deterministic JSON-LD writing for the Group's services: compaction against a supplied
 prefix context with a stable order of nodes, keys and values, so equal data is equal bytes.
 
