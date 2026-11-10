@@ -26,7 +26,9 @@
     "data",
     "README.md",
     "LICENSE",
-    "package.json"
+    "package.json",
+    "docs/API.md",
+    "examples/quickstart.test.mjs"
   ],
   "dependencies": {
     "@red-cup-engineering/javascript-node-services-section": "0.4.1"
@@ -37,7 +39,8 @@
   "scripts": {
     "check": "for file in src/*.mjs scripts/*.mjs test/*.mjs; do node --check \"$file\" || exit; done",
     "test": "node --test test/*.test.mjs",
-    "pack:dry-run": "npm pack --dry-run --ignore-scripts"
+    "pack:dry-run": "npm pack --dry-run --ignore-scripts",
+    "test:consumer": "node --test examples/quickstart.test.mjs"
   },
   "keywords": [
     "json-ld",

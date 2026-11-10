@@ -66,3 +66,7 @@ of any house shape becomes schema.org, OSLC, Dublin Core or any other vocabulary
 without new code. `src/map-records.mjs` documents the mapping fields, and
 `test/map-records.test.mjs` is its witness. The internal services section's
 `lib/record-mappings/` holds the mappings that wrote its `data/records/*.jsonld`.
+
+## Acceptance
+
+Run `npm test` for the source suite. See the [API reference](docs/API.md) and [runnable consumer example](examples/quickstart.test.mjs).
