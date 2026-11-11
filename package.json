@@ -1,6 +1,6 @@
 {
   "name": "@red-cup-engineering/json-ld-services-section",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Deterministic JSON-LD writing: RDF statements compacted against a supplied prefix context with stable node, key and value order, and the small writer (pruneEmpty, jsonLdText) for documents built by hand in a fixed key order.",
   "repository": {
     "type": "git",
