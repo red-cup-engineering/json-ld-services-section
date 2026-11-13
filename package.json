@@ -31,10 +31,10 @@
     "examples/quickstart.test.mjs"
   ],
   "dependencies": {
-    "@red-cup-engineering/javascript-node-services-section": "0.4.1"
+    "@red-cup-engineering/javascript-node-engineering-services-section": "0.4.1"
   },
   "devDependencies": {
-    "@red-cup-engineering/json-schema-services-section": "0.5.1"
+    "@red-cup-engineering/json-schema-engineering-services-section": "0.5.1"
   },
   "scripts": {
     "check": "for file in src/*.mjs scripts/*.mjs test/*.mjs; do node --check \"$file\" || exit; done",
