@@ -1,0 +1,19 @@
+{
+  "@context": { "oslc_rm": "http://open-services.net/ns/rm#", "oslc_qm": "http://open-services.net/ns/qm#", "dcterms": "http://purl.org/dc/terms/" },
+  "@graph": [
+    {
+      "@id": "urn:561:requirement:house-json-records-map-to-standard-vocabularies",
+      "@type": "oslc_rm:Requirement",
+      "dcterms:identifier": "house-json-records-map-to-standard-vocabularies",
+      "dcterms:title": "A record of any house JSON shape maps to a standard vocabulary by a declarative mapping",
+      "dcterms:description": "I NEED THIS DIRECTORIES INFORMATION CONVERTED INTO INDUSTRY STANDARD DATA FORMATS. ACTUAL REAL INDUSTRY STANDARD DATA FORMATS FOR EVERY PIECE OF INFORMATION. NOT RANDOM HOUSE JSON.",
+      "dcterms:created": "2026-11-01"
+    },
+    {
+      "@id": "urn:561:requirement-test:house-json-records-map-to-standard-vocabularies-0",
+      "@type": "oslc_qm:TestCase",
+      "dcterms:description": "map-records-as-json-ld.mjs <mapping> <files> prints one JSON-LD graph whose nodes carry only the types and properties the mapping names; test/map-records.test.mjs passes.",
+      "oslc_qm:validatesRequirement": { "@id": "urn:561:requirement:house-json-records-map-to-standard-vocabularies" }
+    }
+  ]
+}
