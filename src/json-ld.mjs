@@ -1,3 +1,4 @@
+import { compareText } from "@red-cup-engineering/semiotic-content-address-system";
 // Deterministic JSON-LD writing: compaction against a supplied context and stable key order.
 //
 // Two writers, both pure:
@@ -12,7 +13,7 @@
 
 export const RDF_TYPE = "http://www.w3.org/1999/02/22-rdf-syntax-ns#type";
 
-const compare = (left, right) => (left < right ? -1 : left > right ? 1 : 0);
+
 
 /** Prefixes as ordered [prefix, namespace] pairs (an object's entries keep their order). */
 const pairsOf = (prefixes) => {
@@ -61,10 +62,10 @@ export function compactStatementsAsJsonLd(statements, { prefixes } = {}) {
     if (!properties.has(key)) properties.set(key, new Map());
     properties.get(key).set(JSON.stringify(value), value);
   }
-  const graph = [...nodes.keys()].sort(compare).map((id) => {
+  const graph = [...nodes.keys()].sort(compareText).map((id) => {
     const node = { "@id": id };
-    for (const key of [...nodes.get(id).keys()].sort(compare)) {
-      const values = [...nodes.get(id).get(key).entries()].sort(([a], [b]) => compare(a, b)).map(([, value]) => value);
+    for (const key of [...nodes.get(id).keys()].sort(compareText)) {
+      const values = [...nodes.get(id).get(key).entries()].sort(([a], [b]) => compareText(a, b)).map(([, value]) => value);
       node[key] = values.length === 1 ? values[0] : values;
     }
     return node;
