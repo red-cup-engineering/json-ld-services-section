@@ -29,7 +29,7 @@ export function compactIri(iri, prefixes) {
   return iri;
 }
 
-function validateStatements(statements) {
+function admitStatements(statements) {
   if (!Array.isArray(statements)) throw new TypeError("statements must be an array");
   statements.forEach((statement, index) => {
     const object = statement?.object;
@@ -46,7 +46,7 @@ function validateStatements(statements) {
  * text; a typed or language-tagged literal is `{ "@value", "@type" | "@language" }`.
  */
 export function compactStatementsAsJsonLd(statements, { prefixes } = {}) {
-  validateStatements(statements);
+  admitStatements(statements);
   const pairs = pairsOf(prefixes);
   const compact = (iri) => compactIri(iri, pairs);
   const nodes = new Map();
