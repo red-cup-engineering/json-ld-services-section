@@ -1,0 +1,246 @@
+{
+  "name": "Compact RDF statements as JSON-LD",
+  "gateway": "json-ld",
+  "gatewayPackageName": "@red-cup-engineering/json-ld-services-section",
+  "section": "lib/emsenn/services/561-group/services/engineering-services-section/services/computer-engineering-services-section/services/computer-data-engineering-services-section/services/computer-content-engineering-services-section/services/computer-serialized-content-engineering-services-section/services/computer-triplet-serialized-content-engineering-services-section/services/json-ld-services-section",
+  "operation": "compact-rdf-statements-as-json-ld",
+  "origin": "https://market.561.group",
+  "route": "/v1/compact-rdf-statements-as-json-ld",
+  "method": "POST",
+  "price": "$0.005",
+  "category": "data",
+  "output": {
+    "schema": {
+      "type": "object",
+      "required": [
+        "jsonLd"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "jsonLd": {
+          "type": "object",
+          "required": [
+            "@context",
+            "@graph"
+          ],
+          "properties": {
+            "@context": {
+              "type": "object",
+              "additionalProperties": {
+                "type": "string"
+              }
+            },
+            "@graph": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "required": [
+                  "@id"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "example": {
+      "jsonLd": {
+        "@context": {
+          "dcterms": "http://purl.org/dc/terms/",
+          "prov": "http://www.w3.org/ns/prov#",
+          "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+          "xsd": "http://www.w3.org/2001/XMLSchema#"
+        },
+        "@graph": [
+          {
+            "@id": "ni:///sha-256;aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "@type": "prov:Entity",
+            "dcterms:extent": {
+              "@value": "12",
+              "@type": "xsd:nonNegativeInteger"
+            },
+            "rdfs:label": [
+              "a.md",
+              {
+                "@value": "une page",
+                "@language": "fr"
+              }
+            ]
+          },
+          {
+            "@id": "ni:///sha-256;bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbA",
+            "@type": "prov:Entity",
+            "prov:wasDerivedFrom": {
+              "@id": "ni:///sha-256;aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+            }
+          }
+        ]
+      }
+    }
+  },
+  "framings": [
+    {
+      "key": "default",
+      "title": "Compact RDF statements as JSON-LD",
+      "description": "Write RDF statements as a compacted, deterministic JSON-LD graph against your own prefix context: nodes sorted by id, properties by key, values deduplicated, so the same statements always give the same bytes and diffs show only real change.",
+      "tags": [
+        "rdf",
+        "json-ld",
+        "linked-data",
+        "deterministic",
+        "provenance"
+      ],
+      "serviceName": "compact-rdf-as-json-ld"
+    }
+  ],
+  "ledgerAccount": "Income:Sales:X402:Json-ld",
+  "markets": [
+    "x402-bazaar",
+    "402index",
+    "house-capability-market",
+    "house-seller-catalog"
+  ],
+  "seller": {
+    "enterprise": "engineering",
+    "entity": "561-group-llc",
+    "record": {
+      "path": "lib/emsenn/services/561-group/services/engineering-services-section/lib/agency/enterprises/engineering.json",
+      "sha256": "6af4ed9d1e4612b0383267e7ffe0ad028c52164ee3c5136110d434384a29c39f"
+    }
+  },
+  "compute": {
+    "package": "@red-cup-engineering/json-ld-services-section",
+    "subpath": "./compact-rdf-statements-as-json-ld",
+    "export": "compactRdfStatementsAsJsonLd",
+    "args": [
+      "body"
+    ]
+  },
+  "runtime": "edge",
+  "saleStatus": "held",
+  "bodyExample": {
+    "statements": [
+      {
+        "subject": "ni:///sha-256;bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbA",
+        "predicate": "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
+        "object": {
+          "kind": "iri",
+          "value": "http://www.w3.org/ns/prov#Entity"
+        }
+      },
+      {
+        "subject": "ni:///sha-256;bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbA",
+        "predicate": "http://www.w3.org/ns/prov#wasDerivedFrom",
+        "object": {
+          "kind": "iri",
+          "value": "ni:///sha-256;aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+        }
+      },
+      {
+        "subject": "ni:///sha-256;aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "predicate": "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
+        "object": {
+          "kind": "iri",
+          "value": "http://www.w3.org/ns/prov#Entity"
+        }
+      },
+      {
+        "subject": "ni:///sha-256;aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "predicate": "http://purl.org/dc/terms/extent",
+        "object": {
+          "kind": "literal",
+          "value": "12",
+          "datatype": "http://www.w3.org/2001/XMLSchema#nonNegativeInteger"
+        }
+      },
+      {
+        "subject": "ni:///sha-256;aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "predicate": "http://www.w3.org/2000/01/rdf-schema#label",
+        "object": {
+          "kind": "literal",
+          "value": "a.md"
+        }
+      },
+      {
+        "subject": "ni:///sha-256;aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "predicate": "http://www.w3.org/2000/01/rdf-schema#label",
+        "object": {
+          "kind": "literal",
+          "value": "une page",
+          "language": "fr"
+        }
+      }
+    ],
+    "prefixes": {
+      "dcterms": "http://purl.org/dc/terms/",
+      "prov": "http://www.w3.org/ns/prov#",
+      "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+      "xsd": "http://www.w3.org/2001/XMLSchema#"
+    }
+  },
+  "bodySchema": {
+    "type": "object",
+    "required": [
+      "statements",
+      "prefixes"
+    ],
+    "additionalProperties": false,
+    "properties": {
+      "statements": {
+        "type": "array",
+        "description": "RDF statements: subject and predicate IRIs (or blank-node labels) and an object that is an IRI or a literal.",
+        "items": {
+          "type": "object",
+          "required": [
+            "subject",
+            "predicate",
+            "object"
+          ],
+          "additionalProperties": false,
+          "properties": {
+            "subject": {
+              "type": "string"
+            },
+            "predicate": {
+              "type": "string"
+            },
+            "object": {
+              "type": "object",
+              "required": [
+                "kind",
+                "value"
+              ],
+              "additionalProperties": false,
+              "properties": {
+                "kind": {
+                  "enum": [
+                    "iri",
+                    "literal"
+                  ]
+                },
+                "value": {
+                  "type": "string"
+                },
+                "datatype": {
+                  "type": "string",
+                  "description": "Datatype IRI of a literal."
+                },
+                "language": {
+                  "type": "string",
+                  "description": "Language tag of a literal."
+                }
+              }
+            }
+          }
+        }
+      },
+      "prefixes": {
+        "type": "object",
+        "additionalProperties": {
+          "type": "string"
+        },
+        "description": "Prefix to namespace IRI; also the document's @context. An IRI is compacted under the first prefix, in this order, whose namespace it extends."
+      }
+    }
+  }
+}
